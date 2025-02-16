@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="style4.css">
+<!-- Boxicons CSS pour les icônes -->
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+
+        
+        <title>Portfolio website </title>
+    </head>
+    <body>
+        <!--===== HEADER =====-->
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div>
+                    <a href="#" class="nav__logo">Hajar</a>
+                </div>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#home" class="nav__link active-link">Accueil </a></li>
+                        <li class="nav__item"><a href="#about" class="nav__link">A propos</a></li>
+                        <li class="nav__item"><a href="#competences" class="nav__link">Competences</a></li>
+                        <li class="nav__item"><a href="#projects" class="nav__link">Projets</a></li>                       
+                        <li class="nav__item"><a href="#contact" class="nav__link">contact</a></li>
+
+                    </ul>
+                </div>
+
+               
+            </nav>
+        </header>
+
+        <main class="l-main">
+            <!--===== HOME =====-->
+            <section class="home bd-grid" id="home">
+                <div class="home__content">
+                    <div class="home__data">
+                        <h1 class="home__title">Bonjour,<br>je suis <span class="home__title-color">Hajar Bellafrouh</span><br></h1>
+                    
+                    </div>
+            
+                    <!-- Image à côté du texte -->
+                    <div class="home__image-container">
+                        <img src="img.jpg" alt="Hajar's Photo" class="home__image">
+                    </div>
+                </div>
+            
+                
+            </section>
+            <!--===== ABOUT =====-->
+            <section class="about section " id="about">
+                <h2 class="section-title">About me</h2>
+
+                <div class="about__container bd-grid">
+                    
+                    <div>
+                        <h2 class="about__subtitle">HAJAR BELLAFROUH</h2>
+                        <p class="about__text">je suis étudiant en première année du cycle ingénieur, spécialité informatique et ingénierie des données. Passionné par les nouvelles technologies, je suis particulièrement intéressé par l'optimisation des systèmes informatiques et le traitement des données. Curieux et motivé, je cherche constamment à améliorer mes compétences techniques, notamment en programmation, en algorithmique et en gestion des bases de données. J'aspire à contribuer à des projets innovants qui permettent de résoudre des problèmes complexes à travers des solutions technologiques.</p>           
+                    </div>                                   
+                </div>
+            </section>            
+<!--===== COMPETENCES =====-->
+<section class="competences section" id="competences">
+    <h2 class="section-title">Compétences</h2>
+
+    <div class="competences__container bd-grid">          
+        <div>
+            <h2 class="competences__subtitle">Mes Compétences Techniques</h2>
+            <p class="competences__text">
+                Voici quelques-unes des technologies et méthodes que je maîtrise.
+            </p>
+
+            <div class="competences__data">
+                <div class="competences__names">
+                    <i class='bx bxl-python competences__icon'></i>
+                    <span class="competences__name">Python</span>
+                </div>
+                
+            </div>
+
+            <div class="competences__data">
+                <div class="competences__names">
+                    <i class='bx bx-code-alt competences__icon'></i>
+                    <span class="competences__name">Langage C</span>
+                </div>
+               
+            </div>
+
+            <div class="competences__data">
+                <div class="competences__names">
+                    <i class='bx bxs-data competences__icon'></i>
+                    <span class="competences__name">MySQL</span>
+                </div>
+               
+            </div>
+
+            <div class="competences__data">
+                <div class="competences__names">
+                    <i class='bx bx-network-chart competences__icon'></i>
+                    <span class="competences__name">MERISE</span>
+                </div>
+                
+            </div>
+        </div>              
+    </div>
+</section>
+<!--===== PROJECTS =====-->
+<section class="projects section" id="projects">
+    <h2 class="section-title">Projects</h2>
+
+    <div class="projects__container bd-grid">
+        <div class="project">
+            <img src="prj.png" alt="Project 1" class="project__img">
+            <div class="project__content">
+                <p class="project__description">
+                    ce projet j'ai le fait en equipe .
+                    Dans le cadre de notre projet, nous avons développé un Système Intégré de Gestion de Bibliothèque (SIGB) permettant de gérer efficacement les documents, les emprunts et les utilisateurs. Nous avons commencé par analyser les besoins et modéliser la base de données avec les diagrammes adéquats (MCD, MLD, etc.). Ensuite, nous avons implémenté le système sous un SGBD, en intégrant des fonctionnalités comme la gestion des prêts, des retours et des sanctions en cas de retard. Enfin, nous avons élaboré des requêtes SQL optimisées pour faciliter le travail des bibliothécaires. Ce projet nous a permis d’approfondir nos compétences en conception de bases de données et en gestion des systèmes d’information.
+                    nous avons utilise HTML, CSS, PHP et MYSQL .                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--===== CONTACT =====-->
+<section class="contact section" id="contact">
+    <h2 class="section-title">Contactez-moi</h2>
+
+    <div class="contact__container">
+        <div class="contact__card">
+            <img src="R.png" alt="Email" class="contact__icon">
+            <div class="contact__info">
+                <h3>Email</h3>
+                <p>hajarbella51@gmail.com</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--===== FOOTER =====-->
+<footer class="footer">
+    <p class="footer__title">Hajar</p>
+    <div class="footer__social">
+        <a href="https://www.linkedin.com/in/hajar-bellafrouh-65462433a/" target="_blank" class="footer__icon">
+            <i class='bx bxl-linkedin'></i>
+        </a>
+        <a href="https://github.com/Bellafrouh-Hajar" target="_blank" class="footer__icon">
+            <i class='bx bxl-github'></i>
+        </a>
+      
+    </div>
+    <p class="footer__copy">&#169; 2025 Hajar. Tous droits réservés.</p>
+</footer>
+</body>
+</html>
