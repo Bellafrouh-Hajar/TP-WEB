@@ -127,9 +127,6 @@ body {
     line-height: 1.8;
 }
 
-
-
-
 /* Section Projects */
 .projects {
     padding: 4rem 2rem;
@@ -166,10 +163,6 @@ body {
     color: var(--text-color);
     line-height: 1.6;
 }
-
-
-
-
 
 /* Section Contact */
 .contact {
@@ -217,9 +210,6 @@ body {
     color: var(--text-color);
 }
 
-
-
-
 /* Footer */
 .footer {
     background-color: var(--dark);
@@ -256,9 +246,6 @@ body {
     font-size: 0.9rem;
     opacity: 0.7;
 }
-
-
-
 
 /* Section Compétences */
 .competences {
@@ -301,21 +288,6 @@ body {
     margin-right: 0.5rem;
     color: var(--main-color);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Section Contact */
 .contact {
