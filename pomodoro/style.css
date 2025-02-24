@@ -8,9 +8,8 @@
 }
 
 body {
-    background-color: #1e213f;
     color: #d7e0ff;
-    background-image: url('a10015620396717accfa3750a567dfbf.jpg'); /* Remplacer par l'URL de ton image de fond */
+    background-image: url('montagne.jpg'); /* Remplacer par l'URL de ton image de fond */
     background-size: cover;
     background-position: center;
 }
