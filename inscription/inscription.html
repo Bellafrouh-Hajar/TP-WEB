@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign Up</title>
+    <link rel="stylesheet" href="styl.css">
+
+    
+</head>
+<body>
+  
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    
+        <div class="container">
+            <div class="form-box">
+                <h2>Inscription</h2>
+                <form id="signupForm">
+                    <div class="input-group">
+                        <label>Prénom</label>
+                        <input type="text" id="firstName" required>
+                        <span class="error-message"></span>
+                    </div>
+    
+                    <div class="input-group">
+                        <label>Nom</label>
+                        <input type="text" id="lastName" required>
+                        <span class="error-message"></span>
+                    </div>
+    
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email" id="email" required>
+                        <span class="error-message"></span>
+                    </div>
+    
+                    <div class="input-group">
+                        <label>Mot de passe</label>
+                        <input type="password" id="password" required>
+                        <span class="error-message"></span>
+                    </div>
+    
+                    <div class="input-group">
+                        <label>Numéro de téléphone</label>
+                        <input type="tel" id="phone" required>
+                        <span class="error-message"></span>
+                    </div>
+    
+                    <div class="input-group">
+                        <label>Genre</label>
+                        <select id="gender" required>
+                            <option value="">Sélectionner</option>
+                            <option value="Homme">Homme</option>
+                            <option value="Femme">Femme</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+    
+                    <div class="input-group">
+                        <label>Date de naissance</label>
+                        <input type="date" id="dob" required>
+                        <span class="error-message"></span>
+                    </div>
+    
+                    <div class="input-group">
+                        <label>Photo de profil</label>
+                        <input type="file" id="profilePic" accept="image/*">
+                    </div>
+    
+                    <button type="submit">S'inscrire</button>
+                </form>
+            </div>
+        </div>
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>
