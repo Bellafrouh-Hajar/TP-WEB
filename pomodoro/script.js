@@ -1,55 +1,56 @@
 // Sélection des éléments du DOM
-let pomodoro = document.getElementById("pomodoro-timer");
-let short = document.getElementById("short-timer");
-let long = document.getElementById("long-timer");
-let timers = document.querySelectorAll(".timer-display");
+let pomodoro = document.getElementById("pomodoro-timer"); // Minuteur Pomodoro
+let short = document.getElementById("short-timer"); // Minuteur Pause courte
+let long = document.getElementById("long-timer"); // Minuteur Pause longue
+let timers = document.querySelectorAll(".timer-display"); // Liste de tous les minuteurs
 
-let session = document.getElementById("pomodoro-session");
-let shortBreak = document.getElementById("short-break");
-let longBreak = document.getElementById("long-break");
+let session = document.getElementById("pomodoro-session"); // Bouton Pomodoro
+let shortBreak = document.getElementById("short-break"); // Bouton Pause courte
+let longBreak = document.getElementById("long-break"); // Bouton Pause longue
 
-let startBtn = document.getElementById("start");
-let stopBtn = document.getElementById("stop");
-let resetBtn = document.getElementById("RESET");
+let startBtn = document.getElementById("start"); // Bouton START
+let stopBtn = document.getElementById("stop"); // Bouton STOP
+let resetBtn = document.getElementById("RESET"); // Bouton RESET
 
-let timerMsg = document.getElementById("timer-message");
+let timerMsg = document.getElementById("timer-message"); // Message d'erreur si aucun minuteur n'est sélectionné
 
 // Variables globales
-let currentTimer = pomodoro; // Par défaut, on commence avec Pomodoro
-let myInterval = null;
-let endTimestamp = null;
+let currentTimer = pomodoro; // Minuteur actif par défaut
+let myInterval = null; // Stocke l'intervalle du minuteur
+let endTimestamp = null; // Stocke le moment de fin du minuteur
 
-// Fonction pour afficher uniquement le minuteur actif
+// Fonction pour cacher tous les minuteurs
 function hideAllTimers() {
-    timers.forEach(timer => (timer.style.display = "none"));
+    timers.forEach(timer => (timer.style.display = "none")); // Cache chaque minuteur
 }
 
+// Fonction pour afficher un minuteur spécifique
 function showTimer(timer) {
-    hideAllTimers();
-    timer.style.display = "block";
-    currentTimer = timer;
+    hideAllTimers(); // Cache tous les minuteurs avant d'afficher le bon
+    timer.style.display = "block"; // Affiche le minuteur sélectionné
+    currentTimer = timer; // Met à jour le minuteur actif
 }
 
-// Sélection par défaut (Pomodoro)
+// Sélectionne le minuteur Pomodoro par défaut
 showTimer(pomodoro);
 
-// Gestion des boutons Pomodoro, Pause courte et Pause longue
+// Gestion du changement de minuteur
 session.addEventListener("click", () => {
-    showTimer(pomodoro);
-    session.classList.add("active");
-    shortBreak.classList.remove("active");
+    showTimer(pomodoro); // Affiche le minuteur Pomodoro
+    session.classList.add("active"); // Active visuellement le bouton
+    shortBreak.classList.remove("active"); // Désactive les autres boutons
     longBreak.classList.remove("active");
 });
 
 shortBreak.addEventListener("click", () => {
-    showTimer(short);
+    showTimer(short); // Affiche le minuteur Pause courte
     session.classList.remove("active");
     shortBreak.classList.add("active");
     longBreak.classList.remove("active");
 });
 
 longBreak.addEventListener("click", () => {
-    showTimer(long);
+    showTimer(long); // Affiche le minuteur Pause longue
     session.classList.remove("active");
     shortBreak.classList.remove("active");
     longBreak.classList.add("active");
@@ -58,90 +59,80 @@ longBreak.addEventListener("click", () => {
 // Fonction pour démarrer le minuteur
 function startTimer() {
     if (myInterval) {
-        clearInterval(myInterval);
+        clearInterval(myInterval); // Stoppe le minuteur s'il est déjà en cours
     }
 
-    let timerDisplay = currentTimer.querySelector(".time");
-    let timerDuration = parseInt(currentTimer.getAttribute("data-duration"));
-    let timeRemaining = timerDuration * 60 * 1000;
+    let timerDisplay = currentTimer.querySelector(".time"); // Sélectionne l'affichage du temps
+    let timerDuration = parseInt(currentTimer.getAttribute("data-duration")); // Récupère la durée
+    let timeRemaining = timerDuration * 60 * 1000; // Convertit en millisecondes
 
-    endTimestamp = Date.now() + timeRemaining;
+    endTimestamp = Date.now() + timeRemaining; // Calcule l'heure de fin
 
     myInterval = setInterval(() => {
-        let now = Date.now();
-        let remaining = endTimestamp - now;
+        let now = Date.now(); // Récupère l'heure actuelle
+        let remaining = endTimestamp - now; // Calcule le temps restant
 
         if (remaining <= 0) {
-            clearInterval(myInterval);
-            timerDisplay.textContent = "00:00";
-            let alarm = new Audio("mixkit-happy-bells-notification-937.wav");
-            alarm.play();
+            clearInterval(myInterval); // Arrête le minuteur
+            timerDisplay.textContent = "00:00"; // Affiche 00:00
+            let alarm = new Audio("mixkit-happy-bells-notification-937.wav"); // Charge un son d'alarme
+            alarm.play(); // Joue l'alarme
         } else {
-            let minutes = Math.floor(remaining / 60000);
-            let seconds = Math.floor((remaining % 60000) / 1000);
-            timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`;
+            let minutes = Math.floor(remaining / 60000); // Calcule les minutes
+            let seconds = Math.floor((remaining % 60000) / 1000); // Calcule les secondes
+            timerDisplay.textContent = `${minutes}:${seconds.toString().padStart(2, "0")}`; // Met à jour l'affichage
         }
     }, 1000);
 
-    timerMsg.style.display = "none";
+    timerMsg.style.display = "none"; // Cache le message d'erreur
 }
 
-// Bouton START
+// Gestion des boutons
 startBtn.addEventListener("click", () => {
     if (currentTimer) {
-        startTimer();
+        startTimer(); // Démarre le minuteur actif
     } else {
-        timerMsg.style.display = "block";
+        timerMsg.style.display = "block"; // Affiche un message d'erreur
     }
 });
 
-// Bouton STOP
 stopBtn.addEventListener("click", () => {
     if (myInterval) {
-        clearInterval(myInterval);
+        clearInterval(myInterval); // Stoppe le minuteur
         myInterval = null;
     }
 });
 
-// Bouton RESET (corrigé : réinitialise seulement le minuteur actif)
 resetBtn.addEventListener("click", () => {
     if (myInterval) {
-        clearInterval(myInterval);
+        clearInterval(myInterval); // Stoppe le minuteur
         myInterval = null;
     }
 
-    // Réinitialiser uniquement le minuteur sélectionné
-    let defaultDuration = parseInt(currentTimer.getAttribute("data-duration"));
-    currentTimer.querySelector(".time").textContent = `${defaultDuration}:00`;
+    let defaultDuration = parseInt(currentTimer.getAttribute("data-duration")); // Récupère la durée initiale
+    currentTimer.querySelector(".time").textContent = `${defaultDuration}:00`; // Réinitialise l'affichage
 });
 
 // Gestion des tâches
-const addTaskBtn = document.getElementById("add-task-btn");
-const taskInput = document.getElementById("task-input");
-const taskList = document.getElementById("task-list");
-
-addTaskBtn.addEventListener("click", () => {
-    const taskText = taskInput.value.trim();
+document.getElementById("add-task-btn").addEventListener("click", () => {
+    const taskInput = document.getElementById("task-input"); // Récupère l'input
+    const taskList = document.getElementById("task-list"); // Liste des tâches
+    const taskText = taskInput.value.trim(); // Récupère le texte de la tâche
 
     if (taskText) {
-        const taskItem = document.createElement("li");
-        taskItem.textContent = taskText;
+        const taskItem = document.createElement("li"); // Crée un élément de liste
+        taskItem.textContent = taskText; // Ajoute le texte
 
-        // Ajouter un bouton de suppression
-        const deleteBtn = document.createElement("button");
+        const deleteBtn = document.createElement("button"); // Crée un bouton Supprimer
         deleteBtn.textContent = "Supprimer";
         deleteBtn.classList.add("delete-btn");
 
-        // Fonction de suppression
         deleteBtn.addEventListener("click", () => {
-            taskItem.remove();
+            taskItem.remove(); // Supprime la tâche au clic
         });
 
-        // Ajouter le bouton de suppression à la tâche
-        taskItem.appendChild(deleteBtn);
-        taskList.appendChild(taskItem);
-
-        // Réinitialiser le champ de saisie
-        taskInput.value = "";
+        taskItem.appendChild(deleteBtn); // Ajoute le bouton à la tâche
+        taskList.appendChild(taskItem); // Ajoute la tâche à la liste
+        taskInput.value = ""; // Réinitialise l'input
     }
 });
