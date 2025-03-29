@@ -5,77 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Sign Up</title>
     <link rel="stylesheet" href="styl.css">
-
-    
 </head>
 <body>
-  
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-    
-        <div class="container">
-            <div class="form-box">
-                <h2>Inscription</h2>
-                <form id="signupForm">
-                    <div class="input-group">
-                        <label>Prénom</label>
-                        <input type="text" id="firstName" required>
-                        <span class="error-message"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label>Nom</label>
-                        <input type="text" id="lastName" required>
-                        <span class="error-message"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" id="email" required>
-                        <span class="error-message"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label>Mot de passe</label>
-                        <input type="password" id="password" required>
-                        <span class="error-message"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label>Numéro de téléphone</label>
-                        <input type="tel" id="phone" required>
-                        <span class="error-message"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label>Genre</label>
-                        <select id="gender" required>
-                            <option value="">Sélectionner</option>
-                            <option value="Homme">Homme</option>
-                            <option value="Femme">Femme</option>
-                        </select>
-                    </div>
-    
-                    <div class="input-group">
-                        <label>Date de naissance</label>
-                        <input type="date" id="dob" required>
-                        <span class="error-message"></span>
-                    </div>
-    
-                    <div class="input-group">
-                        <label>Photo de profil</label>
-                        <input type="file" id="profilePic" accept="image/*">
-                    </div>
-    
-                    <button type="submit">S'inscrire</button>
-                </form>
-            </div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="container">
+        <div class="form-box">
+            <h2>Inscription</h2>
+            <!-- Modifier l'attribut action et method -->
+            <form id="signupForm" action="cible.php" method="post" enctype="multipart/form-data">
+                <!-- Ajouter les attributs name pour chaque champ -->
+                <div class="input-group">
+                    <label>Prénom</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="input-group">
+                    <label>Nom</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="input-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="password" name="password" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="input-group">
+                    <label>Numéro de téléphone</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="input-group">
+                    <label>Genre</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Sélectionner</option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Date de naissance</label>
+                    <input type="date" id="dob" name="dob" required>
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="input-group">
+                    <label>Photo de profil</label>
+                    <input type="file" id="profilePic" name="profilePic" accept="image/*">
+                </div>
+
+                <button type="submit">S'inscrire</button>
+            </form>
         </div>
-    
-    
-    <script src="script.js"></script>
+    </div>
+
+    <script>
+    document.getElementById("signupForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+        let isValid = true;
+
+        // Récupérer les champs
+        const firstName = document.getElementById("firstName");
+        const lastName = document.getElementById("lastName");
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const phone = document.getElementById("phone");
+        const gender = document.getElementById("gender");
+        const dob = document.getElementById("dob");
+
+        // Fonction pour afficher les erreurs
+        function showError(input, message) {
+            const errorSpan = input.nextElementSibling;
+            errorSpan.textContent = message;
+            isValid = false;
+        }
+
+        // Réinitialiser les erreurs
+        document.querySelectorAll(".error-message").forEach(span => span.textContent = "");
+
+        // Validation des champs
+        if (firstName.value.trim() === "") showError(firstName, "Le prénom est requis.");
+        if (lastName.value.trim() === "") showError(lastName, "Le nom est requis.");
+        
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (!emailPattern.test(email.value)) showError(email, "Email invalide.");
+
+        if (password.value.length < 6) showError(password, "Le mot de passe doit contenir au moins 6 caractères.");
+
+        const phonePattern = /^[0-9]{10}$/;
+        if (!phonePattern.test(phone.value)) showError(phone, "Numéro de téléphone invalide.");
+
+        if (gender.value === "") showError(gender, "Veuillez sélectionner votre genre.");
+
+        if (dob.value === "") showError(dob, "Veuillez entrer votre date de naissance.");
+
+        // Si tout est valide, soumettre le formulaire
+        if (isValid) {
+            this.submit(); // Envoie le formulaire à cible.php
+        }
+    });
+    </script>
 </body>
 </html>
